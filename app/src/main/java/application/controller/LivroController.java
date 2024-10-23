@@ -11,7 +11,7 @@ import application.repository.GeneroRepository;
 import application.repository.LivroRepository;
 
 @Controller
-@RequestMapping("/livros")
+@RequestMapping(value = {"/livros", "/"})
 public class LivroController {
     @Autowired
     private LivroRepository livroRepo;
@@ -33,6 +33,27 @@ public class LivroController {
         @RequestParam("editora") long idEditora
     ) {
 
-        return "redirect:/livros/list";
+@RequestMapping(vale = {"/list" , ""})
+public String List(Mol ui){
+    ui.addAttribute("livros", livroRepo.findAll());
+    return " livros/list";
+
+    @RequestMapping("delete")
+    public String delete (@RequestParam("id") long id, Model ui) {
+        Optional<Livro> sultado = livro.findById(id);
+
+        id(resultdo.isPresent()) {
+            ui.addAttribute("livros", reultado.get());
+            return " livros/delete";
+        }
     }
+}
+        return "redirect:/livros/list(";
+    }
+        @RequestMapping(value = "/delete", method = RequestMethod.POST)
+        public String delete (@RequestParam("id") long id) {
+            livroRepo.deleteBy/Id(id);
+            return "redirect: /livros/list";
+            
+        }
 }
